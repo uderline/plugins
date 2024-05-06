@@ -90,7 +90,12 @@ public class NotificationRestoreReceiver extends BroadcastReceiver {
       if (interval > 0) {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerTime, interval, pendingIntent);
       } else {
-        alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
+        if (Build.VERSION.SDK_INT >= 23 && options.has("idle") && options.getBoolean("idle")) {
+					// https://developer.android.com/reference/android/app/AlarmManager#public-methods
+					alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
+				} else {
+					alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
+				}
       }
     } catch (Exception e) {
       Log.e(TAG, "Notification could not be scheduled!" + e.getMessage(), e);

@@ -201,6 +201,8 @@ export class LocalNotificationsImpl extends LocalNotificationsCommon implements 
 
 				options.atTime = options.at ? options.at.getTime() : 0;
 
+				options.idle ??= false;
+
 				// Used when restoring the notification after a reboot:
 				options.repeatInterval = LocalNotificationsImpl.getInterval(options.interval);
 
