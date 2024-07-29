@@ -197,7 +197,7 @@ export interface ScheduleOptions {
 	 * Force the notification to be shown, even when the device is idle (doze mode).
 	 *
 	 * https://developer.android.com/training/monitoring-device-state/doze-standby
-	 * https://developer.android.com/reference/android/app/AlarmManager.html#setAndAllowWhileIdle(int,%20long,%20android.app.PendingIntent)
+	 * https://developer.android.com/reference/android/app/AlarmManager#setExactAndAllowWhileIdle(int,%20long,%20android.app.PendingIntent)
 	 *
 	 * Android only (Android API >= 23).
 	 * Default false.
